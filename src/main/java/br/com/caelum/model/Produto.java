@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
@@ -28,6 +29,7 @@ public class Produto {
 	private String linkDaFoto;
 	
 	@ManyToMany
+//	@JoinTable(name="CATEGORIA_PRODUTO")
 	private List<Categoria> categorias = new ArrayList<>();
 	
 	@NotEmpty
