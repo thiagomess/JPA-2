@@ -29,8 +29,15 @@ public class ProdutoDao {
 	}
 
 	public Produto getProduto(Integer id) {
+		
 		Produto produto = em.find(Produto.class, id);
 		return produto;
+// AO inves de usar o inteceptor na classe configurador, pode se usar o JPQL para evitar problema de Lazy
+		
+//		String jpql = "select p from Produto p join fetch p.categorias where p.id =:pId";
+//		
+//		return em.createQuery(jpql, Produto.class).setParameter("pId", id).getSingleResult();
+//		
 	}
 
 	public List<Produto> getProdutos(String nome, Integer categoriaId, Integer lojaId) {
