@@ -95,7 +95,7 @@ public class CriadorDeProdutos {
 				violao.setDescricao("Excelente violão");
 				violao.setPreco(500.0);
 				violao.adicionarCategorias(musica);
-				violao.setLinkDaFoto("http://www.marillac.g12.br/imgs/atividade%20complementar/violao.jpg");
+				violao.setLinkDaFoto("https://http2.mlstatic.com/D_Q_NP_978424-MLB27155749344_042018-Q.jpg");
 				
 				em.persist(violao);
 				
