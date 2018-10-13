@@ -9,20 +9,33 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+//@DynamicUpdate(value=true) // serve para na hora do update dar apenas UPDATE no campo que foi alterado
 @Entity
 public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Version // Com essa anotação e adicionado o atributo no form, nao permite 2 usuarios ao mesmo tempo alterar, lança uma OptimisticLockException
+	private int versao;
+	
+	public int getVersao() {
+		return versao;
+	}
+
+	public void setVersao(int versao) {
+		this.versao = versao;
+	}
+
 	@NotEmpty
 	private String nome;
 	@NotEmpty

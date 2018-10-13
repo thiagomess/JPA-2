@@ -10,7 +10,7 @@
 <div class="container">
 	<div class="panel panel-default">
 		<div class="panel-heading">Novo produto</div>
-
+		
 		<div class="panel-body">
 			<form action="${spring:mvcUrl('cadastraProduto').build()}" method="post">
 				<div class="form-group">
@@ -93,6 +93,7 @@
 						<input type="hidden" name="id" value="${produto.id}">
 					</div>
 				</c:if>
+				<input type="hidden" name="versao" value="${produto.versao}"/>
 				
 				<c:if test="${produto.id == null}">
 					<div class="form-group">
