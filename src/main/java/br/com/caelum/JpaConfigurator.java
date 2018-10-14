@@ -6,6 +6,8 @@ import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.stat.Statistics;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -46,6 +48,12 @@ public class JpaConfigurator {
 
 	    return dataSource;
 	}
+	
+	@Bean //Ativa as estatisticas para ser usado na JSP estatistica
+	public Statistics statistics(EntityManagerFactory emf) {
+		return emf.unwrap(SessionFactory.class).getStatistics();
+		
+	}
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean getEntityManagerFactory(DataSource dataSource) {
@@ -65,6 +73,7 @@ public class JpaConfigurator {
 		props.setProperty("hibernate.cache.use_second_level_cache", "true"); //Define que será usado cache de segundo nivel
 		props.setProperty("hibernate.cache.use_query_cache", "true");// define que as query serão cacheadas, desde que marcadas com SetHint
 		props.setProperty("hibernate.cache.region.factory_class", "org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory"); //Define o tipo de chache EhCache
+		 props.setProperty("hibernate.generate_statistics", "true");// deixa as Statics configurado no metodo statistics habilitado
 		
 		entityManagerFactory.setJpaProperties(props);
 		return entityManagerFactory;
