@@ -62,7 +62,10 @@ public class JpaConfigurator {
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
 		props.setProperty("hibernate.show_sql", "true");
 		props.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-
+		props.setProperty("hibernate.cache.use_second_level_cache", "true"); //Define que será usado cache de segundo nivel
+		props.setProperty("hibernate.cache.use_query_cache", "true");// define que as query serão cacheadas, desde que marcadas com SetHint
+		props.setProperty("hibernate.cache.region.factory_class", "org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory"); //Define o tipo de chache EhCache
+		
 		entityManagerFactory.setJpaProperties(props);
 		return entityManagerFactory;
 	}
